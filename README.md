@@ -8,6 +8,31 @@ Este proyecto construye el motor completo de un chat con AI sin usar una API key
 
 La idea no es “hacer un chatbot lindo” solamente. La idea es entender el contrato técnico que hay detrás de un chat de producción.
 
+## Objetivos de aprendizaje
+
+En este ejercicio vas a aprender a:
+
+- Comprender el contrato de una API de mensajes y la estructura correcta del payload.
+- Construir requests para un modelo de AI con system prompt y mensajes.
+- Implementar un chat engine básico con historial de conversación.
+- Normalizar respuestas de la API cuando llegan como bloques de contenido.
+- Manejar errores de rate limit `429` con lógica de retry.
+- Prevenir múltiples requests usando debounce en el envío de mensajes.
+
+## Contexto de trabajo
+
+Trabajamos sobre una SPA de chat con un chat engine incompleto. El chat ya tiene UI, pero faltan piezas clave para que la integración con AI sea robusta.
+
+El objetivo es construir el motor del chat que:
+
+- arme correctamente el payload de la API;
+- mantenga el historial de conversación;
+- procese respuestas en formato `content[]`;
+- maneje rate limits `429`;
+- evite múltiples requests con debounce y bloqueo de UI.
+
+Al final, el chat envía mensajes, recibe **respuestas mock** y maneja estados de UI correctamente.
+
 ## 1. Qué problema resuelve
 
 Un chat con AI puede “parecer” simple:
@@ -326,4 +351,3 @@ Si aparece varias veces por un solo intento del usuario, revisar el listener y e
 - **rate limit**: límite de requests impuesto por la API.
 - **retry-after**: tiempo recomendado antes de reintentar.
 - **normalización**: convertir datos raw en un formato seguro para la app.
-
